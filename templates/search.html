@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+  <br/>
+  <h2>Search for a gene</h2>
+  <form action="{{ url_for('search') }}" method=post>
+    <dl>
+      <dt>Gene symbol:</dt>
+      <dd><input type=text name=symbol>
+      for organism:
+        <select name=organism>
+          {% for org in organisms %}
+            <option value="{{ org }}">{{ org }}</option>
+          {% endfor %}
+        </select>
+      </dd>
+      <br/>
+      <dt><input type=submit value=Search>
+    </dl>
+  </form>
+
+  <h2>Examples:</h2>
+  <p>
+    <a href='/view/fly/Alas'>Alas</a> (fly) |
+    <a href='/view/rat/Snurf'>Snurf</a> (rat) |
+    <a href='/view/yeast/HEM1'>HEM1</a> (yeast) |
+    <a href='/view/human/FTO'>FTO</a> (human)
+  </p>
+{% endblock %}

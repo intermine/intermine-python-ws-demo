@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Report for {{ org_abbrev }} gene: <span style="background-color: pink;">{{ symbol }}</span></h2>
+
+ <ul class='entries'>
+   <h3>Found homologs:</h3>
+   {% for org in homologs %}
+     <li>{{ org }} - 
+     {% for gene in homologs[org] %}
+       {{ gene }}
+       {% if homologs[org][gene] %}
+         <span class="smalltext">({{ homologs[org][gene]|join(', ') }})</span>
+      {% endif %}
+     {% endfor %}
+     </li>
+   {% else %}
+     <li>No homologs found</li>
+   {% endfor %}
+ </ul>
+
+ <table border=1>
+   <tr>
+	 <th></th>
+     {% for org in orgs %}
+       <th colspan={{ orgs[org]|length }}>{{ org }}</th>
+	 {% endfor %}
+   </tr>
+   <tr>
+	 <th>Pathway</th>
+     {% for org in orgs %}
+       {% for gene in orgs[org] %}
+         {% if gene == symbol and org == organism %}
+           <th style='background-color: pink;'>{{ gene }}</th>
+         {% else %}
+           <th>{{ gene }}</th>
+         {% endif %}
+       {% endfor %}
+	 {% endfor %}
+   </tr>
+
+   {% for p in table %}
+     <tr>
+	   <td>{{ p }}</td>
+     {% for org in orgs %}
+       {% for gene in orgs[org] %}
+         {% if org in table[p] and gene in table[p][org] %}
+           <td style='background-color: yellowgreen;'></td>
+         {% else %}
+           <td></td>
+         {% endif %}
+       {% endfor %}
+	   {% endfor %}
+	   </tr>
+   {% endfor %}
+ </table>
+
+{% endblock %}
+
+

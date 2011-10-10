@@ -19,4 +19,6 @@ h1, h2          { font-family: 'Georgia', serif; margin: 0; }
                   border: 1px solid #AACBE2; }
 .error          { background: #F0D6D6; padding: 0.5em; }
 .smalltext		{ font-size: 0.6em;}
+td,th {border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 2px;}
+table {border: 1px solid #ccc; border-width: 1px 0 0 1px; border-collapse: collapse;}
 

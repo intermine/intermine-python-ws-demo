@@ -18,15 +18,14 @@
    {% endfor %}
  </ul>
 
- <table border=1>
+ <table cellpadding="0">
    <tr>
-	 <th></th>
+	 <th rowspan="2">Pathway</th>
      {% for org in orgs %}
        <th colspan={{ orgs[org]|length }}>{{ org }}</th>
 	 {% endfor %}
    </tr>
    <tr>
-	 <th>Pathway</th>
      {% for org in orgs %}
        {% for gene in orgs[org] %}
          {% if gene == symbol and org == organism %}
